@@ -1,0 +1,15 @@
+{
+  "profiles": {
+    "DbAndGrpc": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "dotnetRunMessages": true,
+      "applicationUrl": "http://localhost:5274;https://localhost:7257"
+    },
+    "Профиль 2": {
+      "commandName": "Project"
+    }
+  }
+}
