@@ -1,7 +1,7 @@
 ﻿using DbAndGrpc;
 using Grpc.Net.Client;
 
-using var channel = GrpcChannel.ForAddress("http://localhost:7257");
+using var channel = GrpcChannel.ForAddress("http://localhost:5274");
 
 var client = new UserService.UserServiceClient(channel);
 
