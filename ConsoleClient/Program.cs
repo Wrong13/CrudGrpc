@@ -25,3 +25,11 @@ try
 }
 catch (RpcException ex)
 { Console.WriteLine(ex.Status.Detail ); }
+
+Console.WriteLine("Обновление пользователя");
+userReply = await client.UpdateUserAsync(new UpdateUserRequest { Id = 4, Name = "IIIIIlya", Age = 20 });
+Console.WriteLine($"{userReply.Id}. {userReply.Name} - {userReply.Age}");
+
+Console.WriteLine("Удаление Юзера");
+userReply = await client.DeleteUserAsync(new DeleteUserRequest { Id = 4 });
+Console.WriteLine($"Удален {userReply.Id}. {userReply.Name} - {userReply.Age}");

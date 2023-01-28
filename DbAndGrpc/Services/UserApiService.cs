@@ -44,5 +44,30 @@ namespace DbAndGrpc.Services
             var reply = new UserReply() { Id = user.Id, Name = user.Name,Age = user.Age };
             return await Task.FromResult(reply);
         }
+        
+        // Обновление юзера
+        public override async Task<UserReply> UpdateUser(UpdateUserRequest request, ServerCallContext context)
+        {
+            var user = await db.Users.FindAsync(request.Id);
+            if (user == null)
+                throw new RpcException(new Status(StatusCode.NotFound, "User not found"));
+            user.Name = request.Name;
+            user.Age = request.Age;
+            await db.SaveChangesAsync();
+            var reply = new UserReply() { Id = user.Id, Name = user.Name, Age = user.Age };
+            return await Task.FromResult(reply);
+        }
+        // Удаление юзера
+        public override async Task<UserReply> DeleteUser(DeleteUserRequest request, ServerCallContext context)
+        {
+            var user = await db.Users.FindAsync(request.Id);
+            if (user == null)
+                throw new RpcException(new Status(StatusCode.NotFound, "User not Found"));
+            db.Users.Remove(user);
+            await db.SaveChangesAsync();
+            var reply = new UserReply() { Id = user.Id, Name = user.Name, Age= user.Age };
+            return await Task.FromResult(reply);
+        }
+
     }
 }
